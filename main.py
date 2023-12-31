@@ -1,3 +1,4 @@
+from openai import OpenAI
 import customtkinter as ctk
 
 # PROGRAM CALL BACKS
@@ -19,7 +20,20 @@ def generate_func():
   else:
     prompt += "The project should not include a Database or API(s)"
 
-  print(prompt)
+  
+  client = OpenAI(
+    api_key="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"
+  )
+  chat_completion = client.chat.completions.create(
+  messages=[
+    {"role":"user",
+    "content": prompt}
+  ],
+  model="gpt-3.5-turbo"
+  )
+  gpt_response = chat_completion.choices[0].message.content
+  
+  response_box.insert("0.0", gpt_response)
 
 
 # PROGRAM ROOT WINDOW
