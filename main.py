@@ -22,7 +22,7 @@ def generate_func():
 
   
   client = OpenAI(
-    api_key="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"
+    api_key=""
   )
   chat_completion = client.chat.completions.create(
   messages=[
